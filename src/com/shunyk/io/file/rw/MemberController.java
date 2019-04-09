@@ -22,7 +22,7 @@ public class MemberController {
 	}
 
 	public void start() {
-		ArrayList<Member> ar = null;
+		ArrayList<Member> ar = new ArrayList<Member>();
 		while(true) {
 
 			System.out.println("원하는 번호 선택");
@@ -62,7 +62,11 @@ public class MemberController {
 
 				}
 			}else if(select == 5){
+				if(ar.size()>0) {
 				ar.add(ma.addMember(sc));
+				}else {
+					mv.view("멤버 정보 추가 후 입력해주세요");
+				}
 			}else if(select == 6){
 				ma.backUp(ar);
 			}else {

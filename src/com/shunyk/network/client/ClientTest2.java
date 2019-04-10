@@ -1,7 +1,5 @@
-package com.shunyk.network;
+package com.shunyk.network.client;
 
-import java.net.Socket;
-import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -9,9 +7,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.lang.Exception;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
 
-public class ClientTest {
+public class ClientTest2 {
 
 	public static void main(String[] args) {
 		OutputStream os = null;
@@ -22,24 +22,32 @@ public class ClientTest {
 		InputStream is = null;
 		InputStreamReader ir = null;
 		BufferedReader br = null;
+		
 		try {
 			s = new Socket("211.238.142.26", 8180);
 			System.out.println("서버와 접송 성공");
 			os = s.getOutputStream(); //byte
 			ow = new OutputStreamWriter(os); //char
 			bw = new BufferedWriter(ow);
-			System.out.println("서버로 보낼 메세지 입력");
+			is = s.getInputStream(); //byte
+			ir = new InputStreamReader(is);
+			br = new BufferedReader(ir);
+			sc = new Scanner(System.in);
+			
+			System.out.println("이름 입력 구분은 -로");
 			String str = sc.next();
 			bw.write(str);
 			bw.write("\r\n");
 			bw.flush();
-			is = s.getInputStream(); //byte
-			ir = new InputStreamReader(is);
-			br = new BufferedReader(ir);
-			String t = br.readLine();
-			System.out.println("Message : " + t);
 			
-		} catch (Exception e) {
+			str = br.readLine();
+			System.out.println("Message : " + str);
+			
+			
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
@@ -47,14 +55,15 @@ public class ClientTest {
 				bw.close();
 				ow.close();
 				os.close();
+				br.close();
+				ir.close();
+				is.close();
 				s.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
-		System.out.println("Client 종료");
 
 	}
 

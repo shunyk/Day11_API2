@@ -55,9 +55,9 @@ public class ServerMenu {
 	public String random() {
 		int num = rd.nextInt(2);
 		if(num == 0) {
-			this.getLunch();
+			getLunch();
 		}else {
-			this.getDinner();
+			getDinner();
 		}
 		return menu;
 	}

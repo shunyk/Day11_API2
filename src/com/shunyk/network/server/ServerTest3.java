@@ -26,7 +26,7 @@ public class ServerTest3 {
 		OutputStream os = null;
 		OutputStreamWriter ow = null;
 		BufferedWriter bw = null;
-		File file = new File("C:\\test");
+		File file = new File("C:\\test\\menu");
 		File file2 = null;
 		FileReader fr = null;
 
@@ -47,10 +47,10 @@ public class ServerTest3 {
 			
 			
 			
-			String s = br.readLine();
-			System.out.println("Message : " + s);
+			str = br.readLine();
+			System.out.println("Message : " + str);
 			
-			if(s.equals("점심")) {
+			if(str.equals("점심")) {
 				file2 = new File(file, "lunch.txt");
 				fr = new FileReader(file2);
 				br = new BufferedReader(fr);
@@ -71,7 +71,7 @@ public class ServerTest3 {
 				bw.write(ar.get(num));
 				bw.write("\r\n");
 				bw.flush();
-			}else if(s.equals("저녁")) {
+			}else if(str.equals("저녁")) {
 				file2 = new File(file, "dinner.txt");
 				fr = new FileReader(file2);
 				br = new BufferedReader(fr);

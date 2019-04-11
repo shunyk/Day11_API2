@@ -46,12 +46,16 @@ public class ServerTest3_1 {
 			
 			sm.inut();
 			if(str.equals("점심")) {
-				
+				str = sm.getLunch();
 			}else if(str.equals("저녁")) {
-				
+				str = sm.getDinner();
 			}else {
-				
+				str = sm.random();
 			}
+			
+			bw.write(str);
+			bw.write("\r\n");
+			bw.flush();
 
 			
 		} catch (Exception e) {
